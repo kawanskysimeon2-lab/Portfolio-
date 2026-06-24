@@ -63,13 +63,13 @@
             border: 1px dashed rgba(255, 255, 255, 0.06); margin-top: -4px; animation: slideDown 0.2s ease-out; text-align: left; font-size: 14px; line-height: 1.5; color: #cbd5e1;
         }
         .folder-content strong { color: #f8fafc; }
-        .btn-sub { padding: 12px; font-size: 14px; background: rgba(255, 255, 255, 0.01); border-color: rgba(255, 255, 255, 0.03); text-align: center; }
+        .btn-sub { padding: 12px; font-size: 14px; background: rgba(255, 255, 255, 0.01); border-color: rgba(255, 255, 255, 0.03); text-align: center; width: 100%; text-decoration: none; }
         .arrow { font-size: 11px; margin-left: auto; color: rgba(255,255,255,0.4); transition: transform 0.2s; }
         .contact-form {
             display: none; flex-direction: column; gap: 10px; background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.05); margin-top: -4px; text-align: left; animation: slideDown 0.2s ease-out;
         }
         .contact-form label { font-size: 11px; color: #94a3b8; font-weight: bold; text-transform: uppercase; }
-        .contact-form input, .contact-form textarea { width: 100%; background: #0f172a; border: 1px solid #334155; padding: 10px; border-radius: 8px; color: white; font-size: 14px; outline: none; resize: none; }
+        .contact-form input, .contact-form textarea { width: 100%; background: #0f172a; border: 1px solid #334155; padding: 10px; border-radius: 8px; color: white; font-size: 14px; outline: none; resize: none; margin-bottom: 5px; }
         .contact-form input:focus, .contact-form textarea:focus { border-color: #38bdf8; }
         .btn-submit { background: #22c55e; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; margin-top: 5px; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
@@ -114,23 +114,24 @@
                 <i class="fas fa-envelope"></i> Entrar em Contato <i class="fas fa-chevron-down arrow" id="arrowContact"></i>
             </div>
             <form class="contact-form" id="contactSection" action="https://formspree.io/f/xkolowej" method="POST">
-
-                <label>Seu E-mail</label><input type="email" name="email" required placeholder="exemplo@email.com">
-                <label>Mensagem</label><textarea name="message" rows="3" required placeholder="Sua proposta..."></textarea>
+                <label>Seu E-mail</label>
+                <input type="email" name="email" required placeholder="exemplo@email.com">
+                <label>Mensagem</label>
+                <textarea name="message" rows="3" required placeholder="Sua proposta..."></textarea>
                 <button type="submit" class="btn-submit">Enviar E-mail</button>
-            </>
+            </form>
         </div>
     </div>
 
-        <script>
-        / Banco de dados real (apenas o que está online para evitar erro 404)
+    <script>
         const meusApps = [
-            { nome: "QuickQR Generator", arquivo: "quickqr.html", icone: "fas fa-qrcode" },
+            { nome: "QuickQR Generator", arquivo: "qrcode.html", icone: "fas fa-qrcode" },
             { nome: "Cronômetro Pro", arquivo: "cronometro.html", icone: "fas fa-stopwatch" }
         ];
 
         function carregarApps() {
-            const container = document.getElementB/yId('appsFolder');
+            const container = document.getElementById('appsFolder');
+            if(!container) return;
             container.innerHTML = ""; 
             meusApps.forEach(app => {
                 const link = document.createElement('a');
@@ -146,14 +147,16 @@
         function toggleElement(elementId, arrowId) {
             const element = document.getElementById(elementId);
             const arrow = document.getElementById(arrowId);
+            if(!element) return;
+            
             const isOpen = element.style.display === 'flex' || element.style.display === 'block';
             
             if (isOpen) {
                 element.style.display = 'none';
-                arrow.style.transform = 'rotate(0deg)';
+                if(arrow) arrow.style.transform = 'rotate(0deg)';
             } else {
                 element.style.display = (elementId === 'contactSection' || elementId === 'storyFolder') ? 'block' : 'flex';
-                arrow.style.transform = 'rotate(180deg)';
+                if(arrow) arrow.style.transform = 'rotate(180deg)';
             }
         }
     </script>
