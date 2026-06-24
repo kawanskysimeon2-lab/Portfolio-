@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Stopwatch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { width: 100%; max-width: 380px; background: #1e293b; padding: 30px 20px; border-radius: 24px; border: 1px solid #334155; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; }
+        
+        .timer-display { font-size: 48px; font-weight: 700; font-family: monospace; color: #38bdf8; margin: 20px 0; letter-spacing: 1px; }
+        .timer-display span { font-size: 32px; color: #94a3b8; }
+
+        .controls { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+        button { flex: 1; max-width: 100px; height: 50px; border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: #0f172a; transition: background 0.2s; }
+        
+        .btn-start { background: #22c55e; } /* Verde */
+        .btn-pause { background: #eab308; display: none; } /* Amarelo */
+        .btn-lap { background: #94a3b8; color: #0f172a; } /* Cinza */
+        .btn-reset { background: #ef4444; color: white; } /* Vermelho */
+        
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .laps-container { max-height: 180px; overflow-y: auto; background: #0f172a; border-radius: 16px; padding: 10px; margin-top: 15px; border: 1px solid #334155; }
+        .lap-row { display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #1e293b; font-size: 15px; font-family: monospace; }
+        .lap-row:last-child { border-bottom: none; }
+        .lap-row .lap-num { color: #64748b; }
+        .lap-row .lap-time { color: #f8fafc; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2 style="font-size: 20px; color: #94a3b8;"><i class="fas fa-stopwatch"></i> CHRONOMETER</h2>
+        
+        <div class="timer-display" id="display">00:00:00<span>.00</span></div>
+        
+        <div class="controls">
+            <button class="btn-lap" id="lapBtn" onclick="recordLap()" disabled><i class="fas fa-flag"></i></button>
+            <button class="btn-start" id="startBtn" onclick="startTimer()"><i class="fas fa-play"></i></button>
+            <button class="btn-pause" id="pauseBtn" onclick="pauseTimer()"><i class="fas fa-pause"></i></button>
+            <button class="btn-reset" id="resetBtn" onclick="resetTimer()"><i class="fas fa-arrow-rotate-left"></i></button>
+        </div>
+
+        <div class="laps-container" id="lapsList" style="display: none;"></div>
+    </div>
+
+    <script>
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timerInterval = null;
+        let lapCount = 0;
+
+        const display = document.getElementById('display');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const lapBtn = document.getElementById('lapBtn');
+        const lapsList = document.getElementById('lapsList');
+
+        function formatTime(time) {
+            let diffInHrs = time / 3600000;
+            let hh = Math.floor(diffInHrs);
+
+            let diffInMin = (diffInHrs - hh) * 60;
+            let mm = Math.floor(diffInMin);
+
+            let diffInSec = (diffInMin - mm) * 60;
+            let ss = Math.floor(diffInSec);
+
+            let diffInMs = (diffInSec - ss) * 100;
+            let ms = Math.floor(diffInMs);
+
+            let formattedHH = hh.toString().padStart(2, '0');
+            let formattedMM = mm.toString().padStart(2, '0');
+            let formattedSS = ss.toString().padStart(2, '0');
+            let formattedMS = ms.toString().padStart(2, '0');
+
+            return `${formattedHH}:${formattedMM}:${formattedSS}<span>.${formattedMS}</span>`;
+        }
+
+        function startTimer() {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(function printTime() {
+                elapsedTime = Date.now() - startTime;
+                display.innerHTML = formatTime(elapsedTime);
+            }, 10); // Atualiza a cada 10 milissegundos
+
+            startBtn.style.display = 'none';
+            pauseBtn.style.display = 'flex';
+            lapBtn.disabled = false;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            startBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+            lapBtn.disabled = true;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            lapCount = 0;
+            display.innerHTML = "00:00:00<span>.00</span>";
+            lapsList.innerHTML = "";
+            lapsList.style.display = 'none';
+            
+            startBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+            lapBtn.disabled = true;
+        }
+
+        function recordLap() {
+            lapCount++;
+            lapsList.style.display = 'block';
+            
+            const lapRow = document.createElement('div');
+            lapRow.className = 'lap-row';
+            lapRow.innerHTML = `
+                <span class="lap-num">Lap ${lapCount}</span>
+                <span class="lap-time">${display.innerHTML}</span>
+            `;
+            
+            // Insere a nova volta sempre no topo da lista
+            lapsList.insertBefore(lapRow, lapsList.firstChild);
+        }
+    </script>
+</body>
+</html>
