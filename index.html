@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+< lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -192,7 +192,7 @@
     }
   </style>
 </head>
-<body>
+<>
 
   <nav>
     <div class="nav-logo">KAWANSKY.DEV</div>
@@ -369,7 +369,7 @@
     © 2026 Kawansky Simeon — Engenharia de Software Mobile-First 📱
   </footer>
 
-  <script>
+     <script>
     // ── TEXTO DIGITADO (HERO)
     const roles = ['Mobile-First Developer', 'Backend Automation Specialist', 'Web Systems Engineering'];
     let ri = 0, ci = 0, deleting = false;
@@ -391,19 +391,13 @@
     // ── LÓGICA DO GERADOR DE QR CODE
     function generateQR() {
       const link = document.getElementById('linkInput').value.trim();
-      if (!link) {
-        alert('Insira um link ou texto primeiro, mano!');
-        return;
-      }
-      const qrResult = document.getElementById('qrResult');
-      const qrImage = document.getElementById('qrImage');
-      const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
-      qrImage.src = apiUrl;
+      if (!link) { alert('Insira um link ou texto primeiro, mano!'); return; }
+      const qrResult = document.getElementById('qrResult'), qrImage = document.getElementById('qrImage');
+      qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
       qrResult.style.display = 'block';
     }
 
-      <script>
-    // CONTINUAÇÃO DA LÓGICA DO CRONÔMETRO E CORREÇÕES
+    // ── LÓGICA DO CRONÔMETRO
     let startTime = 0, elapsedTime = 0, timerInterval = null, lapCount = 0;
     const display = document.getElementById('display'), startBtn = document.getElementById('startBtn');
     const pauseBtn = document.getElementById('pauseBtn'), lapBtn = document.getElementById('lapBtn'), lapsList = document.getElementById('lapsList');
@@ -439,3 +433,4 @@
   </script>
 </body>
 </html>
+  
