@@ -7,16 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0e14;
-      --surface: #101622;
-      --border: #1e293b;
+      --bg: #080b10;
+      --surface: #0f131a;
+      --border: #1e2633;
       
-      /* 🎨 COR PRINCIPAL: Ciano Técnico (Mais elegante e profissional) */
-      --main-color: #00e5ff; 
-      --main-color-dim: rgba(0, 229, 255, 0.1);
+      /* 🎨 PALETA DOURADO OWNER (Cores exatas do seu print) */
+      --main-color: #f7ca84; 
+      --main-gradient: linear-gradient(135deg, #d4843d, #ffde90);
+      --main-color-dim: rgba(212, 132, 61, 0.12);
       
       --text: #f8fafc;
-      --muted: #94a3b8;
+      --muted: #8a99ad;
       --font-mono: 'JetBrains Mono', monospace;
       --font-sans: 'Inter', sans-serif;
     }
@@ -41,7 +42,7 @@
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 50px 50px;
-      opacity: 0.2;
+      opacity: 0.25;
       pointer-events: none;
       z-index: 0;
     }
@@ -56,7 +57,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10, 14, 20, 0.8);
+      background: rgba(8, 11, 16, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -109,7 +110,7 @@
       font-size: 12px;
       color: var(--main-color);
       background: var(--main-color-dim);
-      border: 1px solid rgba(0, 229, 255, 0.3);
+      border: 1px solid rgba(212, 132, 61, 0.3);
       border-radius: 6px;
       padding: 6px 14px;
       margin-bottom: 28px;
@@ -123,7 +124,11 @@
       margin-bottom: 20px;
     }
 
-    .hero h1 .name-color { color: var(--main-color); }
+    .hero h1 .name-color {
+      background: var(--main-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
     .hero-role {
       font-family: var(--font-mono);
@@ -176,13 +181,13 @@
     }
 
     .btn-primary {
-      background: var(--main-color);
-      color: #0a0e14;
+      background: var(--main-gradient);
+      color: #080b10;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 229, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(212, 132, 61, 0.25);
     }
 
     .btn-outline {
@@ -207,7 +212,7 @@
       padding: 40px 24px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: rgba(16, 22, 34, 0.4);
+      background: rgba(15, 19, 26, 0.5);
       flex-wrap: wrap;
     }
 
@@ -215,7 +220,9 @@
       font-family: var(--font-mono);
       font-size: 32px;
       font-weight: 700;
-      color: var(--main-color);
+      background: var(--main-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .stat-label {
@@ -302,7 +309,7 @@
       align-items: center;
       justify-content: center;
       font-size: 48px;
-      background: #161f30;
+      background: #141a24;
     }
 
     .project-info { padding: 20px; }
@@ -486,7 +493,7 @@
     </div>
     <div class="projects-grid">
       <a href="https://kawanskysimeon2-lab.github.io/neon-surge" target="_blank" class="project-card reveal">
-        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #1e293b)">⚡</div>
+        <div class="project-preview" style="background: linear-gradient(135deg, #090e14, #18202c)">⚡</div>
         <div class="project-info">
           <span class="project-tag">Web Game</span>
           <div class="project-name">Neon Surge</div>
@@ -494,7 +501,7 @@
         </div>
       </a>
       <a href="https://kawanskysimeon2-lab.github.io/velocity-rush/" target="_blank" class="project-card reveal">
-        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #111827)">🏎️</div>
+        <div class="project-preview" style="background: linear-gradient(135deg, #090e14, #121824)">🏎️</div>
         <div class="project-info">
           <span class="project-tag">Web Game</span>
           <div class="project-name">Velocity Rush</div>
@@ -502,7 +509,7 @@
         </div>
       </a>
       <a href="https://discord.gg/CHjerqUktT" target="_blank" class="project-card reveal">
-        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #1e1b4b)">🤖</div>
+        <div class="project-preview" style="background: linear-gradient(135deg, #090e14, #1c1d2b)">🤖</div>
         <div class="project-info">
           <span class="project-tag">Bot Discord</span>
           <div class="project-name">DevJunior Bot</div>
@@ -569,5 +576,5 @@
     });
   </script>
 </body>
-    </html>
-    
+        </html>
+        
