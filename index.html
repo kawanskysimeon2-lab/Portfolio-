@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kawansky Simeon | Desenvolvedor Software</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
   <style>
     :root {
       --bg: #080b10;
       --surface: #0f131a;
+      --surface-card: #141a24;
       --border: #1e2633;
       
-      /* 🎨 PALETA DOURADO OWNER (Cores exatas do seu print) */
+      /* 🎨 PALETA DOURADO OWNER */
       --main-color: #f7ca84; 
       --main-gradient: linear-gradient(135deg, #d4843d, #ffde90);
       --main-color-dim: rgba(212, 132, 61, 0.12);
@@ -23,7 +26,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -33,7 +35,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID DE FUNDO ── */
     body::before {
       content: '';
       position: fixed;
@@ -70,38 +71,14 @@
       letter-spacing: 1px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--main-color); }
 
     /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 60px;
-      z-index: 1;
-    }
-
-    .hero-content {
-      text-align: center;
-      max-width: 750px;
-    }
-
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 24px 60px; z-index: 1; }
+    .hero-content { text-align: center; max-width: 750px; }
+    
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -116,263 +93,98 @@
       margin-bottom: 28px;
     }
 
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 64px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 .name-color {
-      background: var(--main-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-role {
-      font-family: var(--font-mono);
-      font-size: clamp(14px, 2.5vw, 16px);
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: var(--main-color);
-      margin-left: 4px;
-      vertical-align: middle;
-      animation: blink 1s infinite;
-    }
-
+    .hero h1 { font-size: clamp(38px, 7vw, 64px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero h1 .name-color { background: var(--main-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-role { font-family: var(--font-mono); font-size: clamp(14px, 2.5vw, 16px); color: var(--muted); margin-bottom: 28px; }
+    
+    .cursor { display: inline-block; width: 2px; height: 1em; background: var(--main-color); margin-left: 4px; vertical-align: middle; animation: blink 1s infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    .hero-desc {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 580px;
-      margin: 0 auto 40px;
-    }
-
+    .hero-desc { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 580px; margin: 0 auto 40px; }
     .hero-desc strong { color: var(--text); }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 26px;
-      border-radius: 6px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--main-gradient);
-      color: #080b10;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(212, 132, 61, 0.25);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--main-color);
-      color: var(--main-color);
-      transform: translateY(-2px);
-    }
+    /* ── BOTÕES ── */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: 6px; font-family: var(--font-mono); font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+    .btn-primary { background: var(--main-gradient); color: #080b10; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212, 132, 61, 0.25); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--main-color); color: var(--main-color); transform: translateY(-2px); }
 
     /* ── STATS ── */
-    .stats {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      gap: 64px;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(15, 19, 26, 0.5);
-      flex-wrap: wrap;
-    }
+    .stats { position: relative; z-index: 1; display: flex; justify-content: center; gap: 64px; padding: 40px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(15, 19, 26, 0.5); flex-wrap: wrap; }
+    .stat-num { font-family: var(--font-mono); font-size: 32px; font-weight: 700; background: var(--main-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: var(--font-mono); }
 
-    .stat-num {
-      font-family: var(--font-mono);
-      font-size: 32px;
-      font-weight: 700;
-      background: var(--main-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    /* ── SEÇÕES GENERALISTAS ── */
+    section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 90px 24px; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--main-color); letter-spacing: 2px; margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 4vw, 36px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 44px; }
 
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-      font-family: var(--font-mono);
-    }
-
-    /* ── SEÇÕES ── */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 90px 24px;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--main-color);
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(26px, 4vw, 36px);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 44px;
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-    }
-
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 16px;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .skill-card:hover {
-      border-color: var(--main-color);
-      transform: translateY(-2px);
-    }
-
+    /* ── SKILLS / ESSENCIAAL ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px 16px; text-align: center; transition: all 0.2s; }
+    .skill-card:hover { border-color: var(--main-color); transform: translateY(-2px); }
     .skill-icon { font-size: 28px; margin-bottom: 8px; }
     .skill-name { font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
     .skill-level { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
     /* ── PROJETOS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.2s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .project-card:hover {
-      border-color: var(--main-color);
-      transform: translateY(-4px);
-    }
-
-    .project-preview {
-      height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      background: #141a24;
-    }
-
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: all 0.2s; text-decoration: none; color: inherit; }
+    .project-card:hover { border-color: var(--main-color); transform: translateY(-4px); }
+    .project-preview { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 48px; background: var(--surface-card); }
     .project-info { padding: 20px; }
-    .project-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--main-color);
-      margin-bottom: 8px;
-      display: inline-block;
-    }
+    .project-tag { font-family: var(--font-mono); font-size: 11px; color: var(--main-color); margin-bottom: 8px; display: inline-block; }
     .project-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
     .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
+    /* ── SEÇÃO METRICAS / APPS EMBUTIDOS (NOVO) ── */
+    .apps-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 20px; }
+    .app-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .app-box h3 { font-size: 20px; margin-bottom: 6px; color: var(--main-color); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .app-box p.subtitle { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+    
+    /* Input & Botões Apps */
+    .app-box input { width: 100%; background: var(--surface-card); border: 1px solid var(--border); padding: 14px; border-radius: 8px; color: white; font-size: 14px; outline: none; text-align: center; margin-bottom: 12px; }
+    .app-box input:focus { border-color: var(--main-color); }
+    .app-box .btn-app { width: 100%; justify-content: center; padding: 12px; font-size: 14px; }
+    
+    /* Result QR */
+    .qr-result { margin-top: 20px; display: none; background: var(--surface-card); padding: 15px; border-radius: 12px; animation: scaleUp 0.3s ease; border: 1px solid var(--border); }
+    .qr-result img { background: white; padding: 8px; border-radius: 8px; margin-bottom: 12px; max-width: 160px; }
+    .share-text { font-size: 12px; color: var(--muted); }
+    @keyframes scaleUp { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    /* Cronômetro Elements */
+    .timer-display { font-size: 42px; font-weight: 700; font-family: var(--font-mono); color: var(--text); margin: 15px 0; letter-spacing: 1px; background: var(--surface-card); padding: 10px; border-radius: 8px; border: 1px solid var(--border); }
+    .timer-display span { font-size: 28px; color: var(--main-color); }
+    .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .controls button { width: 45px; height: 45px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; color: #080b10; }
+    
+    .btn-start { background: #22c55e; }
+    .btn-pause { background: #eab308; display: none; }
+    .btn-lap { background: #94a3b8; }
+    .btn-reset { background: #ef4444; color: white; }
+    .controls button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .laps-container { max-height: 120px; overflow-y: auto; background: var(--surface-card); border-radius: 10px; padding: 8px; border: 1px solid var(--border); }
+    .lap-row { display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+    .lap-row:last-child { border-bottom: none; }
+    .lap-row .lap-num { color: var(--muted); }
+    .lap-row .lap-time { color: var(--text); font-weight: bold; }
+
     /* ── CONTATO ── */
-    .contact-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 14px 20px;
-      text-decoration: none;
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      transition: all 0.2s;
-    }
-
-    .contact-link:hover {
-      border-color: var(--main-color);
-      color: var(--main-color);
-    }
+    .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .contact-link { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 20px; text-decoration: none; color: var(--text); font-family: var(--font-mono); font-size: 13px; transition: all 0.2s; }
+    .contact-link:hover { border-color: var(--main-color); color: var(--main-color); }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-    }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 
-    footer span { color: var(--main-color); }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 600px) {
       .nav-links { display: none; }
@@ -388,6 +200,7 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#skills">Tecnologias</a></li>
       <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#apps">Utilitários</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
@@ -395,13 +208,8 @@
   <div class="hero">
     <div class="hero-content">
       <div class="hero-badge">Disponível para novos projetos</div>
-      <h1>
-        Kawansky<br>
-        <span class="name-color">Simeon</span>
-      </h1>
-      <div class="hero-role">
-        <span id="typed"></span><span class="cursor"></span>
-      </div>
+      <h1>Kawansky<br><span class="name-color">Simeon</span></h1>
+      <div class="hero-role"><span id="typed"></span><span class="cursor"></span></div>
       <p class="hero-desc">
         Desenvolvedor focado no ecossistema <strong>Mobile-First</strong>. 
         Especialista na criação de <strong>automações, bots estruturados e aplicações interativas</strong> 
@@ -409,28 +217,16 @@
       </p>
       <div class="hero-btns">
         <a href="#projetos" class="btn btn-primary">Portfólio de Projetos</a>
-        <a href="#contato" class="btn btn-outline">Canais de Contato</a>
+        <a href="#apps" class="btn btn-outline">Ferramentas Web</a>
       </div>
     </div>
   </div>
 
   <div class="stats">
-    <div class="stat">
-      <div class="stat-num">2+</div>
-      <div class="stat-label">Aplicações Web</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">30+</div>
-      <div class="stat-label">Módulos em Bots</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Mobile-First</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Tecnologias Core</div>
-    </div>
+    <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Aplicações Web</div></div>
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Módulos em Bots</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Mobile-First</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Projetos Ativos</div></div>
   </div>
 
   <section id="sobre">
@@ -519,9 +315,47 @@
     </div>
   </section>
 
+  <section id="apps">
+    <div class="reveal">
+      <div class="section-label">04 // PRODUTOS WEB INTEGRADOS</div>
+      <h2 class="section-title">Ferramentas de uso instantâneo</h2>
+    </div>
+    
+    <div class="apps-layout reveal">
+      
+      <div class="app-box">
+        <h3><i class="fas fa-qrcode"></i> QuickQR</h3>
+        <p class="subtitle">Cole qualquer link para criar um QR Code na hora</p>
+        <input type="text" id="linkInput" placeholder="https://exemplo.com ou texto...">
+        <button class="btn btn-primary btn-app" onclick="generateQR()">Gerar QR Code</button>
+        
+        <div class="qr-result" id="qrResult">
+          <img id="qrImage" src="" alt="QR Code Gerado">
+          <p class="share-text">Pronto! Só tirar print e mandar para a galera escanear.</p>
+        </div>
+      </div>
+
+      <div class="app-box">
+        <h3><i class="fas fa-stopwatch"></i> CHRONOMETER</h3>
+        <p class="subtitle">Cronômetro de alta precisão nativo</p>
+        <div class="timer-display" id="display">00:00:00<span>.00</span></div>
+        
+        <div class="controls">
+          <button class="btn-lap" id="lapBtn" onclick="recordLap()" disabled><i class="fas fa-flag"></i></button>
+          <button class="btn-start" id="startBtn" onclick="startTimer()"><i class="fas fa-play"></i></button>
+          <button class="btn-pause" id="pauseBtn" onclick="pauseTimer()"><i class="fas fa-pause"></i></button>
+          <button class="btn-reset" id="resetBtn" onclick="resetTimer()"><i class="fas fa-arrow-rotate-left"></i></button>
+        </div>
+        
+        <div class="laps-container" id="lapsList" style="display: none;"></div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="contato">
     <div class="reveal">
-      <div class="section-label">04 // CONTATO</div>
+      <div class="section-label">05 // CONTATO</div>
       <h2 class="section-title">Conecte-se profissionalmente</h2>
     </div>
     <div class="contact-links reveal">
@@ -536,12 +370,8 @@
   </footer>
 
   <script>
-    // ── TYPED EFFECT
-    const roles = [
-      'Mobile-First Developer',
-      'Backend Automation Specialist',
-      'Web Systems Engineering',
-    ];
+    // ── TEXTO DIGITADO (HERO)
+    const roles = ['Mobile-First Developer', 'Backend Automation Specialist', 'Web Systems Engineering'];
     let ri = 0, ci = 0, deleting = false;
     const el = document.getElementById('typed');
 
@@ -558,23 +388,54 @@
     }
     type();
 
-    // ── SCROLL REVEAL CORRIGIDO PARA CLIQUES INTERNOS
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.05 });
+    // ── LÓGICA DO GERADOR DE QR CODE
+    function generateQR() {
+      const link = document.getElementById('linkInput').value.trim();
+      if (!link) {
+        alert('Insira um link ou texto primeiro, mano!');
+        return;
+      }
+      const qrResult = document.getElementById('qrResult');
+      const qrImage = document.getElementById('qrImage');
+      const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
+      qrImage.src = apiUrl;
+      qrResult.style.display = 'block';
+    }
 
+      <script>
+    // CONTINUAÇÃO DA LÓGICA DO CRONÔMETRO E CORREÇÕES
+    let startTime = 0, elapsedTime = 0, timerInterval = null, lapCount = 0;
+    const display = document.getElementById('display'), startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn'), lapBtn = document.getElementById('lapBtn'), lapsList = document.getElementById('lapsList');
+
+    function formatTime(time) {
+      let diffInHrs = time / 3600000, hh = Math.floor(diffInHrs);
+      let diffInMin = (diffInHrs - hh) * 60, mm = Math.floor(diffInMin);
+      let diffInSec = (diffInMin - mm) * 60, ss = Math.floor(diffInSec);
+      let diffInMs = (diffInSec - ss) * 100, ms = Math.floor(diffInMs);
+      return `${hh.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}:${ss.toString().padStart(2, '0')}<span>.${ms.toString().padStart(2, '0')}</span>`;
+    }
+
+    function startTimer() {
+      startTime = Date.now() - elapsedTime;
+      timerInterval = setInterval(() => { elapsedTime = Date.now() - startTime; display.innerHTML = formatTime(elapsedTime); }, 10);
+      startBtn.style.display = 'none'; pauseBtn.style.display = 'flex'; lapBtn.disabled = false;
+    }
+
+    function pauseTimer() { clearInterval(timerInterval); startBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; lapBtn.disabled = true; }
+    function resetTimer() { clearInterval(timerInterval); elapsedTime = 0; lapCount = 0; display.innerHTML = "00:00:00<span>.00</span>"; lapsList.innerHTML = ""; lapsList.style.display = 'none'; startBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; lapBtn.disabled = true; }
+    
+    function recordLap() {
+      lapCount++; lapsList.style.display = 'block';
+      const lapRow = document.createElement('div');
+      lapRow.className = 'lap-row';
+      lapRow.innerHTML = `<span class="lap-num">Volta ${lapCount}</span><span class="lap-time">${display.innerHTML}</span>`;
+      lapsList.insertBefore(lapRow, lapsList.firstChild);
+    }
+
+    // ── SCROLL REVEAL ANIMATION
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.05 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        const targetEl = document.querySelector(targetId);
-        if (targetEl) {
-          targetEl.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-        }
-      });
-    });
   </script>
 </body>
-        </html>
-        
+</html>
