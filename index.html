@@ -1,164 +1,573 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kawansky Simeon | Dev Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            padding: 35px 22px;
-            width: 100%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.1);
-        }
-        .avatar {
-            width: 95px;
-            height: 95px;
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
-            border-radius: 50%;
-            margin: 0 auto 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: #0f172a;
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        h1 { font-size: 26px; margin-bottom: 6px; letter-spacing: -0.5px; font-weight: 700; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .tagline { color: #38bdf8; font-size: 13px; margin-bottom: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .links-container { display: flex; flex-direction: column; gap: 12px; }
-        .btn {
-            background: rgba(255, 255, 255, 0.03); color: #f8fafc; text-decoration: none; padding: 14px; border-radius: 14px; font-weight: 600; font-size: 15px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;
-        }
-        .btn-github { background: #1e293b; border-color: #475569; }
-        .btn-story { background: rgba(234, 179, 8, 0.1); border-color: rgba(234, 179, 8, 0.2); color: #fef08a; }
-        .btn-games { background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.25); color: #d8b4fe; }
-        .btn-apps { background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.25); color: #bae6fd; }
-        .btn-contact { background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.25); color: #4ade80; }
-        .btn:active { background: #f8fafc; color: #0f172a; transform: scale(0.96); }
-        .folder-content {
-            display: none; flex-direction: column; gap: 8px; background: rgba(15, 23, 42, 0.6); padding: 14px; border-radius: 14px;
-            border: 1px dashed rgba(255, 255, 255, 0.06); margin-top: -4px; animation: slideDown 0.2s ease-out; text-align: left; font-size: 14px; line-height: 1.5; color: #cbd5e1;
-        }
-        .folder-content strong { color: #f8fafc; }
-        .btn-sub { padding: 12px; font-size: 14px; background: rgba(255, 255, 255, 0.01); border-color: rgba(255, 255, 255, 0.03); text-align: center; width: 100%; text-decoration: none; }
-        .arrow { font-size: 11px; margin-left: auto; color: rgba(255,255,255,0.4); transition: transform 0.2s; }
-        .contact-form {
-            display: none; flex-direction: column; gap: 10px; background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.05); margin-top: -4px; text-align: left; animation: slideDown 0.2s ease-out;
-        }
-        .contact-form label { font-size: 11px; color: #94a3b8; font-weight: bold; text-transform: uppercase; }
-        .contact-form input, .contact-form textarea { width: 100%; background: #0f172a; border: 1px solid #334155; padding: 10px; border-radius: 8px; color: white; font-size: 14px; outline: none; resize: none; margin-bottom: 5px; }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #38bdf8; }
-        .btn-submit { background: #22c55e; color: #0f172a; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; margin-top: 5px; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawansky Simeon | Desenvolvedor Software</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e14;
+      --surface: #101622;
+      --border: #1e293b;
+      
+      /* 🎨 COR PRINCIPAL: Ciano Técnico (Mais elegante e profissional) */
+      --main-color: #00e5ff; 
+      --main-color-dim: rgba(0, 229, 255, 0.1);
+      
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    /* ── GRID DE FUNDO ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 14, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--main-color);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--main-color); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 60px;
+      z-index: 1;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 750px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--main-color);
+      background: var(--main-color-dim);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 6px;
+      padding: 6px 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .name-color { color: var(--main-color); }
+
+    .hero-role {
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 2.5vw, 16px);
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--main-color);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-desc strong { color: var(--text); }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--main-color);
+      color: #0a0e14;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 229, 255, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--main-color);
+      color: var(--main-color);
+      transform: translateY(-2px);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(16, 22, 34, 0.4);
+      flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--main-color);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* ── SEÇÕES ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 90px 24px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--main-color);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 44px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--main-color);
+      transform: translateY(-2px);
+    }
+
+    .skill-icon { font-size: 28px; margin-bottom: 8px; }
+    .skill-name { font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
+    .skill-level { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* ── PROJETOS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card:hover {
+      border-color: var(--main-color);
+      transform: translateY(-4px);
+    }
+
+    .project-preview {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: #161f30;
+    }
+
+    .project-info { padding: 20px; }
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--main-color);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .project-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CONTATO ── */
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--main-color);
+      color: var(--main-color);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer span { color: var(--main-color); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .stats { gap: 24px; justify-content: space-between; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="avatar">KS</div>
-        <h1>Kawansky Simeon</h1>
-        <div class="tagline">Mobile-First Developer</div>
+  <nav>
+    <div class="nav-logo">KAWANSKY.DEV</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Tecnologias</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
 
-        <div class="links-container">
-            <div class="btn btn-story" onclick="toggleElement('storyFolder', 'arrowStory')">
-                <i class="fas fa-user-astronaut"></i> Minha Jornada <i class="fas fa-chevron-down arrow" id="arrowStory"></i>
-            </div>
-            <div class="folder-content" id="storyFolder">
-                🚀 <strong>Minha Filosofia:</strong> Entrei na programação focado em construir soluções reais. Acredito na evolução constante através de projetos práticos e códigos limpos.<br><br>
-                📱 <strong>Mobile-First Real:</strong> Meu maior diferencial é dominar o desenvolvimento **100% pelo telemóvel**. Escrevo scripts, corrijo bugs, organizo repositórios e compilo projetos em tempo real usando ferramentas mobile avançadas (como ACode e ambientes virtuais).<br><br>
-                🛠️ <strong>Stack e Especialidades:</strong> Desenvolvimento lógico e automações inteligentes em **Python**, design de interfaces limpas e dinâmicas com **HTML5 e CSS3**, manipulação de elementos na tela e lógica reativa em **JavaScript Nativo**, além da arquitetura de Web-Games interativos.
-            </div>
-
-            <a href="https://github.com/kawanskysimeon2-lab" target="_blank" class="btn btn-github"><i class="fab fa-github"></i> GitHub Oficial</a>
-            <a href="https://www.instagram.com/kawanskydev7/" target="_blank" class="btn"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://discord.gg/CHjerqUktT" target="_blank" class="btn"><i class="fab fa-discord"></i> Comunidade Discord</a>
-
-            <div class="btn btn-games" onclick="toggleElement('gamesFolder', 'arrowGames')">
-                <i class="fas fa-gamepad"></i> Meus Jogos <i class="fas fa-chevron-down arrow" id="arrowGames"></i>
-            </div>
-            <div class="folder-content" id="gamesFolder">
-                <a href="https://kawanskysimeon2-lab.github.io/neon-surge" target="_blank" class="btn btn-sub"><i class="fas fa-play"></i> Neon Surge</a>
-                <a href="https://kawanskysimeon2-lab.github.io/velocity-rush/" target="_blank" class="btn btn-sub"><i class="fas fa-bolt"></i> Velocity Rush</a>
-            </div>
-
-            <div class="btn btn-apps" onclick="toggleElement('appsFolder', 'arrowApps')">
-                <i class="fas fa-toolbox"></i> Meus Apps & Utilitários <i class="fas fa-chevron-down arrow" id="arrowApps"></i>
-            </div>
-            <div class="folder-content" id="appsFolder">
-                </div>
-
-            <div class="btn btn-contact" onclick="toggleElement('contactSection', 'arrowContact')">
-                <i class="fas fa-envelope"></i> Entrar em Contato <i class="fas fa-chevron-down arrow" id="arrowContact"></i>
-            </div>
-            <form class="contact-form" id="contactSection" action="https://formspree.io/f/xkolowej" method="POST">
-                <label>Seu E-mail</label>
-                <input type="email" name="email" required placeholder="exemplo@email.com">
-                <label>Mensagem</label>
-                <textarea name="message" rows="3" required placeholder="Sua proposta..."></textarea>
-                <button type="submit" class="btn-submit">Enviar E-mail</button>
-            </form>
-        </div>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Disponível para novos projetos</div>
+      <h1>
+        Kawansky<br>
+        <span class="name-color">Simeon</span>
+      </h1>
+      <div class="hero-role">
+        <span id="typed"></span><span class="cursor"></span>
+      </div>
+      <p class="hero-desc">
+        Desenvolvedor focado no ecossistema <strong>Mobile-First</strong>. 
+        Especialista na criação de <strong>automações, bots estruturados e aplicações interativas</strong> 
+        utilizando ambientes de desenvolvimento otimizados para dispositivos móveis.
+      </p>
+      <div class="hero-btns">
+        <a href="#projetos" class="btn btn-primary">Portfólio de Projetos</a>
+        <a href="#contato" class="btn btn-outline">Canais de Contato</a>
+      </div>
     </div>
+  </div>
 
-    <script>
-        const meusApps = [
-            { nome: "QuickQR Generator", arquivo: "qrcode.html", icone: "fas fa-qrcode" },
-            { nome: "Cronômetro Pro", arquivo: "cronometro.html", icone: "fas fa-stopwatch" }
-        ];
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Aplicações Web</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Módulos em Bots</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Mobile-First</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Tecnologias Core</div>
+    </div>
+  </div>
 
-        function carregarApps() {
-            const container = document.getElementById('appsFolder');
-            if(!container) return;
-            container.innerHTML = ""; 
-            meusApps.forEach(app => {
-                const link = document.createElement('a');
-                link.href = `https://kawanskysimeon2-lab.github.io/portfolio-/${app.arquivo}`;
-                link.className = "btn btn-sub";
-                link.innerHTML = `<i class="${app.icone}"></i> ${app.nome}`;
-                container.appendChild(link);
-            });
+  <section id="sobre">
+    <div class="reveal">
+      <div class="section-label">01 // PERFIL PROMISSOR</div>
+      <h2 class="section-title">Alta performance técnica<br>independente da infraestrutura</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Mobile Development</div>
+        <div class="skill-level">Uso avançado de Termux e ACode para compilação e versionamento de código.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Automação de Sistemas</div>
+        <div class="skill-level">Construção de arquiteturas modulares para bots corporativos e de entretenimento.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎮</div>
+        <div class="skill-name">Interactive Web</div>
+        <div class="skill-level">Engenharia de interface e lógica aplicada ao desenvolvimento de jogos nativos.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="reveal">
+      <div class="section-label">02 // STACK TECNOLÓGICA</div>
+      <h2 class="section-title">Tecnologias dominadas</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-level">Scripts & Automações</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-level">Lógica & Node.js</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Discord.js</div>
+        <div class="skill-level">Integração de APIs</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML5 / CSS3</div>
+        <div class="skill-level">Estrutura & Estilização</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="reveal">
+      <div class="section-label">03 // PROJETOS SELECIONADOS</div>
+      <h2 class="section-title">Aplicações em produção</h2>
+    </div>
+    <div class="projects-grid">
+      <a href="https://kawanskysimeon2-lab.github.io/neon-surge" target="_blank" class="project-card reveal">
+        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #1e293b)">⚡</div>
+        <div class="project-info">
+          <span class="project-tag">Web Game</span>
+          <div class="project-name">Neon Surge</div>
+          <div class="project-desc">Jogo de ação focado em performance mobile, estruturado em JavaScript puro.</div>
+        </div>
+      </a>
+      <a href="https://kawanskysimeon2-lab.github.io/velocity-rush/" target="_blank" class="project-card reveal">
+        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #111827)">🏎️</div>
+        <div class="project-info">
+          <span class="project-tag">Web Game</span>
+          <div class="project-name">Velocity Rush</div>
+          <div class="project-desc">Aplicação interativa com engine de física responsiva adaptada para telas sensíveis ao toque.</div>
+        </div>
+      </a>
+      <a href="https://discord.gg/CHjerqUktT" target="_blank" class="project-card reveal">
+        <div class="project-preview" style="background: linear-gradient(135deg, #0f172a, #1e1b4b)">🤖</div>
+        <div class="project-info">
+          <span class="project-tag">Bot Discord</span>
+          <div class="project-name">DevJunior Bot</div>
+          <div class="project-desc">Ferramenta com mais de 30 módulos operacionais voltados para automação de servidores comunitários.</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="reveal">
+      <div class="section-label">04 // CONTATO</div>
+      <h2 class="section-title">Conecte-se profissionalmente</h2>
+    </div>
+    <div class="contact-links reveal">
+      <a href="https://github.com/kawanskysimeon2-lab" target="_blank" class="contact-link">🐙 GitHub</a>
+      <a href="https://www.instagram.com/kawanskydev7/" target="_blank" class="contact-link">📸 Instagram</a>
+      <a href="https://discord.gg/CHjerqUktT" target="_blank" class="contact-link">💬 Discord</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Kawansky Simeon — Engenharia de Software Mobile-First 📱
+  </footer>
+
+  <script>
+    // ── TYPED EFFECT
+    const roles = [
+      'Mobile-First Developer',
+      'Backend Automation Specialist',
+      'Web Systems Engineering',
+    ];
+    let ri = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typed');
+
+    function type() {
+      const word = roles[ri];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++ci);
+        if (ci === word.length) { deleting = true; setTimeout(type, 2000); return; }
+      } else {
+        el.textContent = word.slice(0, --ci);
+        if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+      }
+      setTimeout(type, deleting ? 30 : 60);
+    }
+    type();
+
+    // ── SCROLL REVEAL CORRIGIDO PARA CLIQUES INTERNOS
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          targetEl.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
         }
-
-        window.onload = carregarApps;
-
-        function toggleElement(elementId, arrowId) {
-            const element = document.getElementById(elementId);
-            const arrow = document.getElementById(arrowId);
-            if(!element) return;
-            
-            const isOpen = element.style.display === 'flex' || element.style.display === 'block';
-            
-            if (isOpen) {
-                element.style.display = 'none';
-                if(arrow) arrow.style.transform = 'rotate(0deg)';
-            } else {
-                element.style.display = (elementId === 'contactSection' || elementId === 'storyFolder') ? 'block' : 'flex';
-                if(arrow) arrow.style.transform = 'rotate(180deg)';
-            }
-        }
-    </script>
+      });
+    });
+  </script>
 </body>
-</html>
+    </html>
+    
