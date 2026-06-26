@@ -157,18 +157,30 @@
       padding: 6px 14px; border-radius: 4px; font-size: 11px; font-weight: 600; text-decoration: none;
     }
 
-    /* Grid de Habilidades */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+    /* Lista de Habilidades Atualizada */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .skill-tag {
-      background: #0d0d0f; border: 1px solid var(--border);
-      padding: 10px; border-radius: 6px; font-size: 12px;
-      display: flex; align-items: center; gap: 8px; font-weight: 600;
+    .skill-item {
+      background: #0d0d0f; 
+      border: 1px solid var(--border);
+      padding: 14px; 
+      border-radius: 8px; 
+      font-size: 13px;
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-weight: 500;
+      color: #fff;
     }
-    .skill-tag i { color: var(--neon-red); }
+    .skill-item i { 
+      color: var(--neon-red); 
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -198,7 +210,7 @@
     <div class="stats-container">
       <div class="stat-box"><h3>2<span>+</span></h3><p>Games</p></div>
       <div class="stat-box"><h3>1<span>+</span></h3><p>Experience</p></div>
-      <div class="stat-box"><h3>4<span>+</span></h3><p>Skills</p></div>
+      <div class="stat-box"><h3>3<span>+</span></h3><p>Focus</p></div>
     </div>
 
     <div class="btn-container">
@@ -242,12 +254,11 @@
   </div>
 
   <div class="section-box" id="skills">
-    <div class="section-header">Tecnologias</div>
-    <div class="skills-grid">
-      <div class="skill-tag"><i class="fab fa-html5"></i> HTML5</div>
-      <div class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</div>
-      <div class="skill-tag"><i class="fab fa-js"></i> JavaScript</div>
-      <div class="skill-tag"><i class="fab fa-github"></i> GitHub</div>
+    <div class="section-header">Tecnologias & Foco</div>
+    <div class="skills-list">
+      <div class="skill-item"><i class="fab fa-js"></i> Aprendiz de JavaScript</div>
+      <div class="skill-item"><i class="fas fa-code"></i> Criando soluções com HTML, CSS e JS</div>
+      <div class="skill-item"><i class="fas fa-mobile-alt"></i> Foco em desenvolvimento mobile-first</div>
     </div>
   </div>
 
@@ -261,4 +272,5 @@
   </div>
 
 </body>
-</html>
+        </html>
+        
