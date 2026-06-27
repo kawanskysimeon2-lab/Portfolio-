@@ -7,7 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        /* ===== CONFIGURAÇÕES GLOBAIS ===== */
+        /* ============================================
+           CONFIGURAÇÕES GLOBAIS
+           ============================================ */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -22,7 +24,7 @@
             --muted: #6c6c74;
             --radius: 16px;
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="light"] {
@@ -62,6 +64,22 @@
             pointer-events: none;
         }
 
+        /* ===== RASTRO DO MOUSE ===== */
+        #rastro {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neon);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            transition: all 0.1s ease;
+            opacity: 0;
+            box-shadow: 0 0 30px rgba(255, 42, 27, 0.3);
+        }
+
+        body:hover #rastro { opacity: 1; }
+
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
@@ -70,7 +88,9 @@
         /* ===== CONTEÚDO PRINCIPAL ===== */
         .content { position: relative; z-index: 1; }
 
-        /* ===== HEADER ===== */
+        /* ============================================
+           HEADER
+           ============================================ */
         header {
             display: flex;
             justify-content: space-between;
@@ -137,7 +157,9 @@
 
         #theme-toggle:hover { color: var(--neon); border-color: var(--neon); transform: rotate(30deg); }
 
-        /* ===== HERO ===== */
+        /* ============================================
+           HERO
+           ============================================ */
         .hero { padding: 8px 0 24px; }
 
         .badge {
@@ -200,7 +222,9 @@
             border-left: 3px solid var(--neon);
         }
 
-        /* ===== STATS ===== */
+        /* ============================================
+           STATS
+           ============================================ */
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -216,14 +240,31 @@
             text-align: center;
             transition: var(--transition);
             cursor: default;
+            position: relative;
+            overflow: hidden;
         }
 
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 42, 27, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .stat:hover::before { opacity: 1; }
         .stat:hover { border-color: var(--neon); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 42, 27, 0.1); }
         .stat h3 { font-size: 18px; font-weight: 800; }
         .stat h3 span { color: var(--neon); }
         .stat p { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-        /* ===== BOTÃO PRINCIPAL ===== */
+        /* ============================================
+           BOTÃO PRINCIPAL
+           ============================================ */
         .btn-primary {
             display: flex;
             align-items: center;
@@ -241,11 +282,31 @@
             transition: var(--transition);
             margin-bottom: 16px;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transform: scale(0);
+            transition: transform 0.5s;
+            border-radius: 50px;
+        }
+
+        .btn-primary:active::after {
+            transform: scale(4);
+            opacity: 0;
         }
 
         .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--neon-glow); }
 
-        /* ===== REDES SOCIAIS ===== */
+        /* ============================================
+           REDES SOCIAIS
+           ============================================ */
         .social {
             display: flex;
             justify-content: center;
@@ -261,7 +322,9 @@
 
         .social a:hover { color: var(--neon); transform: translateY(-3px) scale(1.1); }
 
-        /* ===== MOCKUP 3D ===== */
+        /* ============================================
+           MOCKUP - CELULAR COM CÓDIGO
+           ============================================ */
         .mockup {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -293,46 +356,49 @@
         .mockup-badge.top { top: 12px; left: 12px; }
         .mockup-badge.bottom { bottom: 12px; right: 12px; color: var(--neon); }
 
-        .cube {
-            width: 90px;
-            height: 90px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: girar 12s infinite linear;
-        }
-
-        .face {
-            position: absolute;
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 42, 27, 0.04);
-            border: 2px solid var(--neon);
-            box-shadow: 0 0 30px var(--neon-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 700;
-            color: #fff;
+        .celular-container {
             text-align: center;
-            padding: 4px;
-            border-radius: 4px;
+            width: 100%;
+            padding: 20px;
         }
 
-        .front  { transform: translateZ(45px); }
-        .back   { transform: rotateY(180deg) translateZ(45px); }
-        .left   { transform: rotateY(-90deg) translateZ(45px); color: var(--neon); }
-        .right  { transform: rotateY(90deg) translateZ(45px); color: var(--neon); }
-        .top    { transform: rotateX(90deg) translateZ(45px); font-size: 16px; }
-        .bottom { transform: rotateX(-90deg) translateZ(45px); font-size: 16px; }
-
-        @keyframes girar {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
+        .celular-box {
+            display: inline-block;
+            background: #0d0d0f;
+            border: 2px solid var(--neon);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 0 40px var(--neon-glow);
+            transition: all 0.5s;
         }
 
-        /* ===== SEÇÕES ===== */
+        .celular-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px var(--neon-glow), 0 0 120px rgba(255, 42, 27, 0.1);
+        }
+
+        .codigo-tela {
+            background: #1a1a1e;
+            border-radius: 12px;
+            padding: 16px;
+            min-width: 200px;
+            text-align: left;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .codigo-tela .linha1 { color: var(--neon); }
+        .codigo-tela .linha2 { color: #fff; }
+        .codigo-tela .linha3 { color: #ffd93d; }
+        .codigo-tela .linha4 { color: #6bcbff; }
+        .codigo-tela .linha5 { color: #00ff88; }
+        .codigo-tela .destaque { color: var(--neon); }
+
+        /* ============================================
+           SEÇÕES
+           ============================================ */
         .secao {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -343,12 +409,30 @@
             animation: fadeInUp 0.6s ease forwards;
             opacity: 0;
             transition: background 0.5s, border 0.5s;
+            position: relative;
+            overflow: hidden;
         }
+
+        .secao::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 42, 27, 0.02) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .secao:hover::before { opacity: 1; }
 
         .secao:nth-child(1) { animation-delay: 0.1s; }
         .secao:nth-child(2) { animation-delay: 0.2s; }
         .secao:nth-child(3) { animation-delay: 0.3s; }
         .secao:nth-child(4) { animation-delay: 0.4s; }
+        .secao:nth-child(5) { animation-delay: 0.5s; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -366,17 +450,38 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== CARDS DE PROJETOS ===== */
+        /* ============================================
+           CARDS DE PROJETOS - COM GLASSMORPHISM
+           ============================================ */
         .projeto-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
+            background: rgba(17, 17, 19, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 14px;
             margin-bottom: 12px;
             transition: var(--transition);
             opacity: 0;
             animation: fadeInUp 0.5s ease forwards;
+            position: relative;
+            overflow: hidden;
         }
+
+        .projeto-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 42, 27, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .projeto-card:hover::before { opacity: 1; }
 
         .projeto-card:nth-child(1) { animation-delay: 0.1s; }
         .projeto-card:nth-child(2) { animation-delay: 0.2s; }
@@ -386,8 +491,11 @@
 
         .projeto-card:hover {
             border-color: var(--neon);
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 12px 40px rgba(255, 42, 27, 0.08);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 0 30px rgba(255, 42, 27, 0.15), inset 0 0 30px rgba(255, 42, 27, 0.05);
+            background: rgba(17, 17, 19, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .projeto-card h4 {
@@ -447,6 +555,24 @@
             text-decoration: none;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-projeto::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transform: scale(0);
+            transition: transform 0.5s;
+            border-radius: 6px;
+        }
+
+        .btn-projeto:active::after {
+            transform: scale(4);
+            opacity: 0;
         }
 
         .btn-projeto:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-glow); }
@@ -459,26 +585,19 @@
 
         .btn-projeto.secundario:hover { background: var(--border); border-color: var(--neon); }
 
-        /* ===== SKILLS ===== */
-        .skill-item {
+        /* ===== CATEGORIAS ===== */
+        .categoria-titulo {
+            color: var(--neon);
+            margin: 20px 0 12px;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text);
-            transition: var(--transition);
+            gap: 8px;
         }
 
-        .skill-item:hover { border-color: var(--neon); transform: translateX(4px); }
-        .skill-item i { color: var(--neon); font-size: 16px; width: 20px; text-align: center; }
-
-        /* ===== DEPOIMENTOS ===== */
+        /* ============================================
+           DEPOIMENTOS
+           ============================================ */
         .depoimento-card {
             background: var(--bg);
             border: 1px solid var(--border);
@@ -501,7 +620,9 @@
 
         .depoimento-autor { color: var(--neon); font-size: 12px; margin-top: 8px; font-weight: 600; }
 
-        /* ===== SELO ===== */
+        /* ============================================
+           SELO
+           ============================================ */
         .selo {
             display: flex;
             align-items: center;
@@ -527,7 +648,9 @@
             50% { transform: scale(1.02); }
         }
 
-        /* ===== BOTÃO VOLTAR AO TOPO ===== */
+        /* ============================================
+           BOTÃO VOLTAR AO TOPO
+           ============================================ */
         #btnTopo {
             position: fixed;
             bottom: 20px;
@@ -549,7 +672,9 @@
         #btnTopo.visivel { opacity: 1; visibility: visible; }
         #btnTopo:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 30px rgba(255, 42, 27, 0.5); }
 
-        /* ===== BOTÃO COMPARTILHAR ===== */
+        /* ============================================
+           BOTÃO COMPARTILHAR
+           ============================================ */
         .btn-compartilhar {
             display: flex;
             justify-content: center;
@@ -579,7 +704,9 @@
         .btn-share.instagram { background: #E4405F; }
         .btn-share.copy { background: var(--muted); }
 
-        /* ===== RODAPÉ ===== */
+        /* ============================================
+           RODAPÉ
+           ============================================ */
         footer {
             text-align: center;
             padding: 20px 0 10px;
@@ -592,7 +719,15 @@
         footer strong { color: var(--neon); }
         footer .infinito { color: var(--neon); font-size: 14px; }
 
-        /* ===== RESPONSIVO ===== */
+        .contador-visitas {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        /* ============================================
+           RESPONSIVO
+           ============================================ */
         @media (max-width: 400px) {
             body { padding: 12px; }
             .hero h1 { font-size: 26px; min-height: 60px; }
@@ -600,15 +735,9 @@
             .stat h3 { font-size: 15px; }
             .stat p { font-size: 7px; }
             .mockup { height: 220px; }
-            .cube { width: 70px; height: 70px; }
-            .face { width: 70px; height: 70px; font-size: 8px; }
-            .front  { transform: translateZ(35px); }
-            .back   { transform: rotateY(180deg) translateZ(35px); }
-            .left   { transform: rotateY(-90deg) translateZ(35px); }
-            .right  { transform: rotateY(90deg) translateZ(35px); }
-            .top    { transform: rotateX(90deg) translateZ(35px); font-size: 13px; }
-            .bottom { transform: rotateX(-90deg) translateZ(35px); font-size: 13px; }
+            .codigo-tela { font-size: 10px; padding: 12px; min-width: 160px; }
             .btn-share { font-size: 10px; padding: 6px 12px; }
+            #rastro { display: none; }
         }
 
         @media (max-width: 360px) {
@@ -617,12 +746,22 @@
             .projeto-card { padding: 12px; }
             .btn-projeto { font-size: 10px; padding: 4px 10px; }
         }
+
+        @media (min-width: 1024px) {
+            body { max-width: 600px; padding: 30px; }
+            .hero h1 { font-size: 42px; }
+            .stat h3 { font-size: 24px; }
+            .codigo-tela { font-size: 14px; padding: 24px; min-width: 280px; }
+        }
     </style>
 </head>
 <body>
 
 <!-- ===== FUNDO DE PARTÍCULAS ===== -->
 <canvas id="particles-canvas"></canvas>
+
+<!-- ===== RASTRO DO MOUSE ===== -->
+<div id="rastro"></div>
 
 <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
 <button id="btnTopo" title="Voltar ao topo">
@@ -632,7 +771,8 @@
 <div class="content">
 
     <!-- ===== HEADER ===== -->
-    <head></head><div class="logo">K<span>.</span><span class="infinito">♾️</span></div>
+    <header>
+        <div class="logo">K<span>.</span><span class="infinito">♾️</span></div>
         <nav>
             <a href="#home" class="ativo">Home</a>
             <a href="#projetos">Projetos</a>
@@ -656,8 +796,8 @@
         </h1>
 
         <p>
-            Crio soluções reais direto do celular. Aprendo todos os dias com 
-            <strong style="color: var(--neon);">IA</strong> e transformo ideias em código.
+            Transformo ideias em código direto do celular. Aprendo todos os dias com 
+            <strong style="color: var(--neon);">IA</strong> e crio projetos reais.
         </p>
 
         <!-- Frase Motivacional -->
@@ -668,7 +808,7 @@
 
         <div class="stats">
             <div class="stat"><h3>5<span>+</span></h3><p>Projetos</p></div>
-            <div class="stat"><h3>1<span>+</span></h3><p>Ano de jornada</p></div>
+            <div class="stat"><h3>19<span> Jun</span></h3><p>Comecei a programar</p></div>
             <div class="stat"><h3>∞</h3><p>Curiosidade</p></div>
             <div class="stat"><h3>📱</h3><p>Feito no celular</p></div>
         </div>
@@ -683,16 +823,19 @@
             <a href="https://discord.gg/xJTn2sJ3c" target="_blank"><i class="fab fa-discord"></i></a>
         </div>
 
-        <!-- ===== MOCKUP 3D ===== -->
+        <!-- ===== MOCKUP - CELULAR COM CÓDIGO ===== -->
         <div class="mockup">
             <span class="mockup-badge top"><i class="fas fa-mobile-alt"></i> Live View</span>
-            <div class="cube">
-                <div class="face front">Kawansky</div>
-                <div class="face back">Kawansky</div>
-                <div class="face left">Dev</div>
-                <div class="face right">Dev</div>
-                <div class="face top">&lt;/&gt;</div>
-                <div class="face bottom">{ }</div>
+            <div class="celular-container">
+                <div class="celular-box">
+                    <div class="codigo-tela">
+                        <div class="linha1">📱 Dev Mobile-First</div>
+                        <div class="linha2">1 <span style="color: var(--muted);">semana de jornada</span></div>
+                        <div class="linha3">5 <span style="color: var(--muted);">projetos no ar</span></div>
+                        <div class="linha4">♾️ <span style="color: var(--muted);">curiosidade infinita</span></div>
+                        <div class="linha5">&lt; <span class="destaque">Feito no Celular</span> /&gt;</div>
+                    </div>
+                </div>
             </div>
             <span class="mockup-badge bottom">&lt; Active /&gt;</span>
         </div>
@@ -714,11 +857,15 @@
         </div>
     </section>
 
-    <!-- ===== PROJETOS ===== -->
+    <!-- ============================================
+    PROJETOS COM CATEGORIAS
+    ============================================ -->
     <section class="secao" id="projetos">
         <h2 class="secao-titulo"><i class="fas fa-rocket" style="color: var(--neon); margin-right: 8px;"></i> Meus Projetos</h2>
 
-        <!-- 1. Neon Surge -->
+        <!-- ===== CATEGORIA: JOGOS ===== -->
+        <h3 class="categoria-titulo"><i class="fas fa-gamepad"></i> Jogos</h3>
+
         <div class="projeto-card">
             <h4><i class="fas fa-bolt"></i> Neon Surge</h4>
             <p>Jogo arcade de reação rápida com cores neon vibrantes.</p>
@@ -734,7 +881,6 @@
             </div>
         </div>
 
-        <!-- 2. Velocity Rush -->
         <div class="projeto-card">
             <h4><i class="fas fa-running"></i> Velocity Rush</h4>
             <p>Corridas rápidas com foco em desvios e agilidade.</p>
@@ -750,7 +896,9 @@
             </div>
         </div>
 
-        <!-- 3. Bloco de Notas -->
+        <!-- ===== CATEGORIA: APPS ===== -->
+        <h3 class="categoria-titulo"><i class="fas fa-mobile-alt"></i> Apps</h3>
+
         <div class="projeto-card" style="border-color: var(--neon);">
             <h4><i class="fas fa-sticky-note"></i> Bloco de Notas v2.0</h4>
             <p>App para salvar notas com data/hora, cores e edição.</p>
@@ -770,7 +918,6 @@
             </div>
         </div>
 
-        <!-- 4. Calculadora Inteligente -->
         <div class="projeto-card">
             <h4><i class="fas fa-calculator"></i> Calculadora Inteligente</h4>
             <p>Calculadora com histórico de cálculos e design moderno.</p>
@@ -790,7 +937,9 @@
             </div>
         </div>
 
-        <!-- 5. QuickQR -->
+        <!-- ===== CATEGORIA: FERRAMENTAS ===== -->
+        <h3 class="categoria-titulo"><i class="fas fa-tools"></i> Ferramentas</h3>
+
         <div class="projeto-card">
             <h4><i class="fas fa-qrcode"></i> QuickQR</h4>
             <p>Gerador de QR Codes rápido e direto do celular.</p>
@@ -811,7 +960,9 @@
         </div>
     </section>
 
-    <!-- ===== SKILLS ===== -->
+    <!-- ============================================
+    SKILLS
+    ============================================ -->
     <section class="secao" id="skills">
         <h2 class="secao-titulo"><i class="fas fa-code" style="color: var(--neon); margin-right: 8px;"></i> Tecnologias</h2>
 
@@ -823,7 +974,9 @@
         <div class="skill-item"><i class="fas fa-infinity"></i> Mentalidade de crescimento</div>
     </section>
 
-    <!-- ===== DEPOIMENTOS ===== -->
+    <!-- ============================================
+    DEPOIMENTOS
+    ============================================ -->
     <section class="secao" id="depoimentos">
         <h2 class="secao-titulo"><i class="fas fa-star" style="color: var(--neon); margin-right: 8px;"></i> O que dizem</h2>
 
@@ -848,39 +1001,51 @@
         </div>
     </section>
 
-    <!-- ===== JORNADA ===== -->
+    <!-- ============================================
+    JORNADA
+    ============================================ -->
     <section class="secao" id="jornada">
         <h2 class="secao-titulo"><i class="fas fa-road" style="color: var(--neon); margin-right: 8px;"></i> Minha Jornada</h2>
 
         <div style="color: var(--text-secondary); line-height: 1.7; font-size: 13px;">
-            <p>Comecei desenvolvendo projetos <strong style="color: var(--neon);">direto do celular</strong>. Aprendi a lidar com limitações e transformar desafios em aprendizado.</p>
+            <p><strong style="color: var(--neon);">🚀 1 SEMANA DE PROGRAMAÇÃO COMEÇO 19 JUN 2026</strong></p>
             <br />
-            <p>Hoje, uso <strong style="color: var(--neon);">IA</strong> como ferramenta para acelerar meu aprendizado, mas <strong style="color: var(--text);">cada linha de código que você vê aqui foi entendida e aplicada por mim</strong>.</p>
+            <p>Comecei minha jornada na programação há apenas <strong style="color: var(--neon);">1 semana</strong>, direto do celular. Sem computador, sem curso, só com vontade de aprender e criar.</p>
             <br />
-            <p>Meu objetivo: criar soluções reais, úteis e que resolvam problemas de verdade.</p>
+            <p>Nesse tempo, já criei <strong style="color: var(--neon);">5 projetos</strong> que estão no ar, um portfólio completo com <strong style="color: var(--neon);">1221 linhas de código sem contar com meus proximos projeto</strong> e aprendi HTML, CSS e JavaScript na prática.</p>
+            <br />
+            <p>Uso <strong style="color: var(--neon);">IA</strong> como ferramenta para acelerar meu aprendizado, mas <strong style="color: var(--text);">cada linha de código foi entendida e aplicada por mim</strong>.</p>
+            <br />
+            <p>Meu objetivo: continuar evoluindo, criar soluções reais e mostrar que <strong style="color: var(--neon);">é possível começar de qualquer lugar</strong>.</p>
             <br />
             <p style="color: var(--muted); font-style: italic; font-size: 12px;">"A curiosidade é o combustível. O código é a estrada. ♾️"</p>
         </div>
     </section>
 
-    <!-- ===== SELO ===== -->
+    <!-- ============================================
+    SELO E RODAPÉ
+    ============================================ -->
     <div class="selo">
         <i class="fas fa-mobile-alt"></i>
         Feito no Celular com ❤️
         <i class="fas fa-infinity"></i>
     </div>
 
-    <!-- ===== RODAPÉ ===== -->
     <footer>
         <p>Feito com ❤️ e muito café (ou suco) por <strong>Kawansky <span class="infinito">♾️</span></strong></p>
         <p style="margin-top: 4px; font-size: 10px;"><i class="fas fa-code"></i> 2026 · Sempre aprendendo · Sempre evoluindo</p>
+        <div class="contador-visitas">👁️ <span id="contador">0</span> visitas</div>
     </footer>
 
 </div>
 
-<!-- ===== SCRIPT ===== -->
+<!-- ============================================
+   SCRIPT COMPLETO
+   ============================================ -->
 <script>
-    // ===== PARTÍCULAS =====
+    // ============================================
+    // PARTÍCULAS
+    // ============================================
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -892,14 +1057,14 @@
     window.addEventListener('resize', resizeCanvas);
 
     const particles = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             radius: Math.random() * 2 + 0.5,
-            speedX: (Math.random() - 0.5) * 0.4,
-            speedY: (Math.random() - 0.5) * 0.4,
-            opacity: Math.random() * 0.5 + 0.1
+            speedX: (Math.random() - 0.5) * 0.3,
+            speedY: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.4 + 0.1
         });
     }
 
@@ -918,7 +1083,18 @@
     }
     drawParticles();
 
-    // ===== EFEITO DE DIGITAÇÃO =====
+    // ============================================
+    // RASTRO DO MOUSE
+    // ============================================
+    const rastro = document.getElementById('rastro');
+    document.addEventListener('mousemove', function(e) {
+        rastro.style.left = (e.clientX - 20) + 'px';
+        rastro.style.top = (e.clientY - 20) + 'px';
+    });
+
+    // ============================================
+    // EFEITO DE DIGITAÇÃO
+    // ============================================
     const textos = ['Dev Mobile-First ♾️', 'Criador de Soluções', 'Aprendiz Eterno', 'Kawansky'];
     let textoIndex = 0, charIndex = 0, isDeleting = false;
     const typingElement = document.getElementById('typing-text');
@@ -938,7 +1114,9 @@
     }
     typeEffect();
 
-    // ===== FRASES =====
+    // ============================================
+    // FRASES MOTIVACIONAIS
+    // ============================================
     const frases = [
         '"Código é poesia em movimento."',
         '"Feito com dedicação e um celular."',
@@ -953,7 +1131,9 @@
     ];
     document.getElementById('fraseTexto').textContent = frases[Math.floor(Math.random() * frases.length)];
 
-    // ===== BOTÃO VOLTAR AO TOPO =====
+    // ============================================
+    // BOTÃO VOLTAR AO TOPO
+    // ============================================
     const btnTopo = document.getElementById('btnTopo');
     window.addEventListener('scroll', function() {
         btnTopo.classList.toggle('visivel', window.scrollY > 300);
@@ -962,7 +1142,9 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== TEMA CLARO/ESCURO =====
+    // ============================================
+    // TEMA CLARO/ESCURO
+    // ============================================
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
     const icon = themeToggle.querySelector('i');
@@ -977,7 +1159,9 @@
         icon.className = novoTema === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
     });
 
-    // ===== COMPARTILHAR =====
+    // ============================================
+    // COMPARTILHAR
+    // ============================================
     function compartilhar(plataforma) {
         const url = window.location.href;
         const texto = '🌟 Confira meu portfólio! Kawansky ♾️ - Dev Mobile-First';
@@ -1002,10 +1186,13 @@
         document.body.removeChild(textarea);
     }
 
-    // ===== CONTADOR DE VISITAS =====
-    let visitas = parseInt(localStorage.getItem('visitas')) || 0;
+    // ============================================
+    // CONTADOR DE VISITAS
+    // ============================================
+    let visitas = parseInt(localStorage.getItem('visitas-portfolio')) || 0;
     visitas++;
-    localStorage.setItem('visitas', visitas);
+    localStorage.setItem('visitas-portfolio', visitas);
+    document.getElementById('contador').textContent = visitas;
     console.log(`👁️ Visitas: ${visitas}`);
 </script>
 
