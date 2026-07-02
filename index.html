@@ -572,27 +572,28 @@
         .skill-item i { color: var(--neon); font-size: 16px; width: 20px; text-align: center; }
 
         /* ===== TRAJETORIA ===== */
-        .depoimento-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
-            transition: var(--transition);
-        }
+        .trajetoria-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+}
 
-        .depoimento-card:hover { border-color: var(--neon); }
+.trajetoria-box p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
 
-        .estrelas { color: #ffd93d; margin-bottom: 8px; font-size: 14px; }
+.trajetoria-box p:last-child {
+    margin-bottom: 0;
+}
 
-        .depoimento-texto {
-            font-style: italic;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 13px;
-        }
-
-        .depoimento-autor { color: var(--neon); font-size: 12px; margin-top: 8px; font-weight: 600; }
+.destaque {
+    color: var(--neon);
+    font-weight: 600;
+}
 
         /* ===== JORNADA ===== */
         .jornada-texto {
